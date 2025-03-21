@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 
 public struct FontLoader {
+    nonisolated(unsafe) static var didRegister: Bool = false
+    
     public static func registerFonts() {
+        guard !didRegister else { return }
+        
         let fontNames = [
             "Inter-Regular",
             "Inter-Bold",
@@ -18,6 +22,8 @@ public struct FontLoader {
         ]
         
         fontNames.forEach { registerFont(named: $0) }
+        
+        didRegister = true
     }
 
     private static func registerFont(named name: String) {

@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 
 private struct AppThemeKey: @preconcurrency EnvironmentKey {
-    @MainActor static let defaultValue: DefaultAppTheme = DefaultAppTheme()
+    @MainActor static let defaultValue: any AppTheme = DefaultAppTheme()
 }
 
 public extension EnvironmentValues {
-    var appTheme: DefaultAppTheme {
+    var appTheme: any AppTheme {
         get { self[AppThemeKey.self] }
         set { self[AppThemeKey.self] = newValue }
     }

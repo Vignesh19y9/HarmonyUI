@@ -17,22 +17,11 @@ public protocol AppTypography {
 }
 
 public extension AppTypography {
-    static var defultTypo: AppTypography { CustomTypography() }
+    static var defultTypo: AppTypography { DefaultTypography() }
 }
 
 //MARK: Default
 public struct DefaultTypography: AppTypography {
-    public let title: Font = .title
-    public let subtitle: Font = .headline
-    public let body: Font = .body
-    public let caption: Font = .caption
-    public let button: Font = .callout
-    public let footnote: Font = .footnote
-    
-    public init() {}
-}
-
-public struct CustomTypography: AppTypography {
     public let title: Font = .custom("Inter-Bold", size: 24, relativeTo: .largeTitle)
     public let subtitle: Font = .custom("Inter-SemiBold", size: 20, relativeTo: .title)
     public let body: Font = .custom("Inter-Regular", size: 16, relativeTo: .body)
