@@ -9,14 +9,10 @@ import SwiftUI
 import HarmonyUI
 
 struct ContentView: View {
-    @State var appTheme: any AppTheme = DefaultAppTheme()
+    @EnvironmentObject var appTheme: DefaultAppTheme
     
     var body: some View {
         VStack {
-            Button("Change theme") {
-                appTheme = DefaultAppTheme(colors: ExampleColor())
-            }
-            
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
@@ -26,7 +22,6 @@ struct ContentView: View {
                 .foregroundStyle(appTheme.colors.primary)
         }
         .padding()
-        .environment(\.appTheme, appTheme)
     }
 }
 
