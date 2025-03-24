@@ -8,6 +8,9 @@
 import SwiftUI
 
 public struct DefaultOnboardingView: OnboardingShowProtocol {
+    @Environment(\.showManager) public var showManager
+    public var id: UUID = UUID()
+    public var shouldShow: Bool = true
     public var onComplete: (() -> Void)?
     
     public init(onComplete: (() -> Void)? = nil) {
@@ -20,7 +23,7 @@ public struct DefaultOnboardingView: OnboardingShowProtocol {
                 .font(.title)
                 .padding()
             Button("Continue") {
-                onComplete?()
+                performOnComplete()
             }
         }
     }

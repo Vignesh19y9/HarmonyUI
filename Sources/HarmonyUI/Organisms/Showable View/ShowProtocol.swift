@@ -8,25 +8,16 @@
 import SwiftUI
 
 public protocol ShowProtocol: View {
+    var id: UUID { get }
+    var shouldShow: Bool { get set }
+    var showManager: ShowManager { get }
+    
     var onComplete: (() -> Void)? { get set }
+    func performOnComplete()
 }
 
-extension ShowProtocol {
-    public func addOnComplete(_ onComplete: @escaping () -> Void) -> some View {
-        ShowWrapper(self, onComplete: onComplete)
-    }
-}
-
-//This is only to wrap onComplete to called
-private struct ShowWrapper<T: ShowProtocol>: View {
-    var wrappedView: T
-
-    init(_ view: T, onComplete: @escaping () -> Void) {
-        self.wrappedView = view
-        self.wrappedView.onComplete = onComplete
-    }
-
-    var body: some View {
-        wrappedView
+public extension ShowProtocol {
+    func performOnComplete() {
+        (onComplete ?? { showManager.markCompleted(id.uuidString) })()
     }
 }

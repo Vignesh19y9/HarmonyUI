@@ -8,6 +8,9 @@
 import SwiftUI
 
 public struct DefaultSplashView: SplashShowProtocol {
+    @Environment(\.showManager) public var showManager
+    public var id: UUID = UUID()
+    public var shouldShow: Bool = true
     public var onComplete: (() -> Void)?
     
     public init(onComplete: (() -> Void)? = nil) {
@@ -24,7 +27,7 @@ public struct DefaultSplashView: SplashShowProtocol {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                onComplete?()
+                performOnComplete()
             }
         }
     }

@@ -8,6 +8,9 @@
 import SwiftUI
 
 public struct DefaultPermissionsView: PermissionsShowProtocol {
+    @Environment(\.showManager) public var showManager
+    public var id: UUID = UUID()
+    public var shouldShow: Bool = false
     public var onComplete: (() -> Void)?
     
     public init(onComplete: (() -> Void)? = nil) {
@@ -20,7 +23,7 @@ public struct DefaultPermissionsView: PermissionsShowProtocol {
                 .font(.title)
                 .padding()
             Button("Allow") {
-                onComplete?()
+                performOnComplete()
             }
         }
     }
