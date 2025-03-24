@@ -9,7 +9,7 @@ import SwiftUI
 
 public protocol ShowProtocol: View {
     var id: UUID { get }
-    var shouldShow: Bool { get set }
+    var shouldShow: Bool { get }
     var showManager: ShowManager { get }
     
     var onComplete: (() -> Void)? { get set }
