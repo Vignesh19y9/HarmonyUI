@@ -41,7 +41,7 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
     public var body: some View {
         VStack {
             if config.showSkip {
-                SkipButton(action: skip, isDisabled: isButtonsDisabled || !pageLoaded)
+                OnboardSkipButton(action: skip, isDisabled: isButtonsDisabled || !pageLoaded)
             }
 
             TabView(selection: $currentPage) {
@@ -53,11 +53,11 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
             
             HStack {
                 if config.showBack {
-                    BackButton(action: goBack, isDisabled: isButtonsDisabled || !pageLoaded || currentPage == 0)
+                    OnboardBackButton(action: goBack, isDisabled: isButtonsDisabled || !pageLoaded || currentPage == 0)
                 }
                 
                 if config.showNext {
-                    NextButton(action: goNext, isDisabled: isButtonsDisabled || !pageLoaded)
+                    OnboardNextButton(action: goNext, isDisabled: isButtonsDisabled || !pageLoaded)
                 }
             }
         }
@@ -100,46 +100,15 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
     }
 }
 
-// MARK: - Button Components
-
-private struct SkipButton: View {
-    let action: () -> Void
-    let isDisabled: Bool
-    
-    var body: some View {
-        Button("Skip", action: action)
-            .disabled(isDisabled)
-    }
-}
-
-private struct BackButton: View {
-    let action: () -> Void
-    let isDisabled: Bool
-    
-    var body: some View {
-        Button("Back", action: action)
-            .disabled(isDisabled)
-    }
-}
-
-private struct NextButton: View {
-    let action: () -> Void
-    let isDisabled: Bool
-    
-    var body: some View {
-        Button("Next", action: action)
-            .disabled(isDisabled)
-    }
-}
-
-
 // SwiftUI Preview
 #Preview {
     @State var currentPage: Int = 0
     @State var pageLoaded: Bool = false
     
     return OnboardingTabView(
-        config: TabOnboardingConfig(showSkip: true, showBack: true, showNext: true),
+        config: TabOnboardingConfig(showSkip: true,
+                                    showBack: true,
+                                    showNext: true),
         datas: [
             TabOnboardData(title: "Title 1", text: "Text 1"),
             TabOnboardData(title: "Title 2", text: "Text 2"),

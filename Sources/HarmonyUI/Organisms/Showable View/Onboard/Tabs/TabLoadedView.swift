@@ -31,7 +31,7 @@ public struct TabLoadedView: TabLoadableView {
         }
         .onAppear {
             loaded = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 loaded = true
             }
         }
