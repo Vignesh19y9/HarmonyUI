@@ -15,10 +15,6 @@ public protocol AppBorders {
     var extraThick: CGFloat { get }
 }
 
-public extension AppBorders {
-    static var defaultBorders: AppBorders{ DefaultBorders() }
-}
-
 // MARK: - Default Implementation
 public struct DefaultBorders: AppBorders {
     public let none: CGFloat = 0

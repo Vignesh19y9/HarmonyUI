@@ -17,10 +17,6 @@ public protocol AppCorners {
     var full: CGFloat { get }
 }
 
-public extension AppSpacing {
-    static var defultCorners: AppCorners { DefaultCorners() }
-}
-
 //MARK: Default
 public struct DefaultCorners: AppCorners {
     public let none: CGFloat = 0

@@ -21,10 +21,6 @@ public protocol AppColors {
     var error: Color { get }
 }
 
-public extension AppColors {
-    static var defaultColors: AppBorders{ DefaultBorders() }
-}
-
 // MARK: - Default Implementation
 public struct DefaultColors: AppColors {
     public let primary: Color = .blue

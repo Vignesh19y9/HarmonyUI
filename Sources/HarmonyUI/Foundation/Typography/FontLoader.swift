@@ -15,10 +15,10 @@ public struct FontLoader {
         guard !didRegister else { return }
         
         let fontNames = [
-            "Inter-Regular",
-            "Inter-Bold",
-            "Inter-SemiBold",
-            "Inter-Medium"
+            "Satoshi-Black",
+            "Satoshi-Bold",
+            "Satoshi-Medium",
+            "Satoshi-Regular"
         ]
         
         fontNames.forEach { registerFont(named: $0) }
@@ -27,7 +27,7 @@ public struct FontLoader {
     }
 
     private static func registerFont(named name: String) {
-        guard let url = Bundle.module.url(forResource: name, withExtension: "ttf"),
+        guard let url = Bundle.module.url(forResource: name, withExtension: "otf"),
               let fontDataProvider = CGDataProvider(url: url as CFURL),
               let font = CGFont(fontDataProvider)
         else { return }

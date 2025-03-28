@@ -22,10 +22,6 @@ public protocol AppSpacing {
     var xxxlarge: CGFloat { get }
 }
 
-public extension AppSpacing {
-    static var defultSpacing: AppSpacing { DefaultSpacing() }
-}
-
 //MARK: Default
 public struct DefaultSpacing: AppSpacing {
     public let xxxsmall: CGFloat = 2

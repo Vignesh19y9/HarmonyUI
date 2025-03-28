@@ -16,18 +16,15 @@ public protocol AppTypography {
     var footnote: Font { get }
 }
 
-public extension AppTypography {
-    static var defultTypo: AppTypography { DefaultTypography() }
-}
 
 //MARK: Default
 public struct DefaultTypography: AppTypography {
-    public let title: Font = .custom("Inter-Bold", size: 24, relativeTo: .largeTitle)
-    public let subtitle: Font = .custom("Inter-SemiBold", size: 20, relativeTo: .title)
-    public let body: Font = .custom("Inter-Regular", size: 16, relativeTo: .body)
-    public let caption: Font = .custom("Inter-Regular", size: 14, relativeTo: .caption)
-    public let button: Font = .custom("Inter-Medium", size: 16, relativeTo: .headline)
-    public let footnote: Font = .custom("Inter-Regular", size: 12, relativeTo: .footnote)
+    public let title: Font = .custom("Satoshi-Black", size: 24, relativeTo: .largeTitle)
+    public let subtitle: Font = .custom("Satoshi-Bold", size: 20, relativeTo: .title)
+    public let body: Font = .custom("Satoshi-Regular", size: 16, relativeTo: .body)
+    public let caption: Font = .custom("Satoshi-Regular", size: 14, relativeTo: .caption)
+    public let button: Font = .custom("Satoshi-Medium", size: 16, relativeTo: .headline)
+    public let footnote: Font = .custom("Satoshi-Regular", size: 12, relativeTo: .footnote)
     
     public init() {
         FontLoader.registerFonts()
