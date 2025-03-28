@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 public struct MainAppContainer<S: ShowProtocol, C: View>: View {
-    
+    @ObservedObject var appTheme: DefaultAppTheme
     @StateObject private var showManager = ShowManager()
     
     public let splash: S
@@ -32,7 +32,8 @@ public struct MainAppContainer<S: ShowProtocol, C: View>: View {
         }
     }
     
-    public init(splash: S = DefaultSplashView(),
+    public init(theme: DefaultAppTheme = DefaultAppTheme(),
+                splash: S = DefaultSplashView(),
                 others: [ShowContainer] = [
                     ShowContainer(DefaultOnboardingView()),
                     ShowContainer(DefaultPermissionsView()),
@@ -42,6 +43,7 @@ public struct MainAppContainer<S: ShowProtocol, C: View>: View {
         self.splash = splash
         self.others = others
         self.content = content
+        self._appTheme = ObservedObject(initialValue: theme)
     }
     
     public var body: some View {
@@ -52,6 +54,7 @@ public struct MainAppContainer<S: ShowProtocol, C: View>: View {
         .onChange(of: showManager.completedScreens) { _ in
             moveToNext()
         }
+        .environmentObject(appTheme)
     }
     
     private func moveToNext() {
