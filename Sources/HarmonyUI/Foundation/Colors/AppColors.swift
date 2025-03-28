@@ -19,6 +19,8 @@ public protocol AppColors {
     var success: Color { get }
     var warning: Color { get }
     var error: Color { get }
+    
+    var buttonColor: AppButtonColor { get }
 }
 
 // MARK: - Default Implementation
@@ -31,6 +33,7 @@ public struct DefaultColors: AppColors {
     public let success: Color = .green
     public let warning: Color = .yellow
     public let error: Color = .red
+    public let buttonColor: AppButtonColor = DefaultAppButtonColor()
     
     public init() {}
 }
