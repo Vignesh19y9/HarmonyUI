@@ -17,7 +17,7 @@ public struct OnboardBackButton: View {
     }
     
     public var body: some View {
-        Button("Back", action: action)
+        PrimarySubtleButton("Back", action: action)
             .disabled(isDisabled)
     }
 }
@@ -32,7 +32,22 @@ public struct OnboardNextButton: View {
     }
     
     public var body: some View {
-        Button("Next", action: action)
+        PrimaryButton("Next", action: action)
+            .disabled(isDisabled)
+    }
+}
+
+public struct OnboardGetStartedButton: View {
+    let action: () -> Void
+    let isDisabled: Bool
+    
+    public init(action: @escaping () -> Void, isDisabled: Bool) {
+        self.action = action
+        self.isDisabled = isDisabled
+    }
+    
+    public var body: some View {
+        PrimaryButton("Get Started", action: action)
             .disabled(isDisabled)
     }
 }
@@ -48,14 +63,17 @@ public struct OnboardSkipButton: View {
     }
     
     public var body: some View {
-        Button("Skip", action: action)
+        SecondaryButton("Skip", action: action)
             .disabled(isDisabled)
     }
 }
 
 
 #Preview {
-    OnboardBackButton(action: {}, isDisabled: false)
-    OnboardNextButton(action: {}, isDisabled: false)
-    OnboardSkipButton(action: {}, isDisabled: false)
+    Group {
+        OnboardBackButton(action: {}, isDisabled: false)
+        OnboardNextButton(action: {}, isDisabled: false)
+        OnboardSkipButton(action: {}, isDisabled: false)
+    }
+    .environmentObject(DefaultAppTheme())
 }

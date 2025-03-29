@@ -14,6 +14,7 @@ struct CustomButtonContent<LeadingIcon: View, TrailingIcon: View>: View {
     @Environment(\.idealSize) private var idealSize
     @Environment(\.isHapticsEnabled) private var isHapticsEnabled
     @Environment(\.textColor) private var textColor
+    @Environment(\.isEnabled) private var isEnabled: Bool
     
     let configuration: PrimitiveButtonStyleConfiguration
     var textActiveColor: Color? = nil
@@ -68,7 +69,8 @@ struct CustomButtonContent<LeadingIcon: View, TrailingIcon: View>: View {
         }
     }
     
-    @ViewBuilder var backgroundView: some View {
+    @ViewBuilder
+    var backgroundView: some View {
         if isPressed {
             backgroundShape.activeView
         } else {

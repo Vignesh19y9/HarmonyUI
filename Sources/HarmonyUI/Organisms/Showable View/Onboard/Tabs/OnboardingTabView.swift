@@ -10,6 +10,7 @@ import SwiftUI
 
 public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>: OnboardingShowProtocol {
     
+    @EnvironmentObject var appTheme: DefaultAppTheme
     @Environment(\.showManager) public var showManager
     @Binding public var currentPage: Int
     @Binding public var pageLoaded: Bool
@@ -21,6 +22,14 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
     public let config: TabOnboardingConfig
     public var onComplete: (() -> Void)?
     public let contentProvider: (Data, Int) -> Content
+    
+    var islastPage: Bool {
+        currentPage == datas.count - 1
+    }
+    
+    var isFirstPage: Bool {
+        currentPage == 0
+    }
     
     public init(
         config: TabOnboardingConfig = .init(),
@@ -40,9 +49,7 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
     
     public var body: some View {
         VStack {
-            if config.showSkip {
-                OnboardSkipButton(action: skip, isDisabled: isButtonsDisabled || !pageLoaded)
-            }
+            topSection
 
             TabView(selection: $currentPage) {
                 ForEach(datas.indices, id: \.self) { index in
@@ -50,21 +57,53 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
                         .tag(index)
                 }
             }
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            
+            bottomSection
+        }
+        .padding(appTheme.spacing.medium)
+    }
+    
+    @ViewBuilder
+    private var topSection: some View {
+        if config.showSkip && !islastPage {
+            HStack {
+                Spacer()
+                OnboardSkipButton(
+                    action: skip,
+                    isDisabled: isButtonsDisabled || !pageLoaded
+                )
+                .idealSize()
+                .buttonSize(.compact)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var bottomSection: some View {
+        VStack {
+            DotIndicatorView(dots: datas.count, index: currentPage)
             
             HStack {
-                if config.showBack {
+                if config.showBack && !isFirstPage && !islastPage {
                     OnboardBackButton(action: goBack, isDisabled: isButtonsDisabled || !pageLoaded || currentPage == 0)
                 }
                 
-                if config.showNext {
-                    OnboardNextButton(action: goNext, isDisabled: isButtonsDisabled || !pageLoaded)
+                if config.showNext && !islastPage {
+                    OnboardNextButton(action: goNext,
+                                      isDisabled: isButtonsDisabled || !pageLoaded)
+                }
+                
+                if config.showNext && islastPage {
+                    OnboardGetStartedButton(action: goNext,
+                                            isDisabled: isButtonsDisabled || !pageLoaded)
                 }
             }
         }
     }
     
     private func goNext() {
-        guard pageLoaded, currentPage < datas.count - 1 else {
+        guard pageLoaded, !islastPage else {
             if pageLoaded { completeOnboarding() }
             return
         }
@@ -72,7 +111,7 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
     }
     
     private func goBack() {
-        guard pageLoaded, currentPage > 0 else { return }
+        guard pageLoaded, !isFirstPage else { return }
         animatePageTransition { currentPage -= 1 }
     }
     
@@ -80,7 +119,6 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
         guard pageLoaded else { return }
         animatePageTransition {
             currentPage = datas.count - 1
-            completeOnboarding()
         }
     }
     
@@ -121,4 +159,5 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
         
         TabLoadedView(loaded: $pageLoaded, data: data)
     }
+    .environmentObject(DefaultAppTheme())
 }

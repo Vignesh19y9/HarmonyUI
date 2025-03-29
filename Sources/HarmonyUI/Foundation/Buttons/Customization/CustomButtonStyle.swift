@@ -8,22 +8,19 @@
 import SwiftUI
 
 public struct CustomButtonStyle<LeadingIcon: View, TrailingIcon: View>: PrimitiveButtonStyle {
-    
+    @EnvironmentObject var appTheme: DefaultAppTheme
     @Environment(\.backgroundShape) private var backgroundShape
     @Environment(\.buttonSize) private var buttonSize
 //    @Environment(\.status) private var status
     @Environment(\.textColor) private var textColor
     
-    private var type: ButtonType
     @ViewBuilder private let icon: LeadingIcon
     @ViewBuilder private let disclosureIcon: TrailingIcon
     
     public init(
-        type: ButtonType = .primary,
         @ViewBuilder icon: () -> LeadingIcon = { EmptyView() },
         @ViewBuilder trailingIcon: () -> TrailingIcon = { EmptyView() }
     ) {
-        self.type = type
         self.icon = icon()
         self.disclosureIcon = trailingIcon()
     }
@@ -33,7 +30,8 @@ public struct CustomButtonStyle<LeadingIcon: View, TrailingIcon: View>: Primitiv
             configuration: configuration,
             horizontalPadding: padding,
             verticalPadding: padding,
-            hapticFeedback: hapticFeedback
+            cornerRadius: cornerRadius,
+            hapticFeedback: .light(1)
         ) {
             icon
         } disclosureIcon: {
@@ -42,22 +40,34 @@ public struct CustomButtonStyle<LeadingIcon: View, TrailingIcon: View>: Primitiv
 //        .textFontWeight(.medium)
         .textColor(textColor)
 //        .textSize(textSize)
+        .font(font.weight(.bold))
         .backgroundStyles(backgroundShape.inactive,
                           active: backgroundShape.active)
     }
     
     private var padding: CGFloat {
         switch buttonSize {
-            case .regular: 12
-            case .compact: 8
+        case .regular: appTheme.spacing.small
+        case .compact: appTheme.spacing.xsmall
         }
     }
     
-    private var hapticFeedback: HapticsProvider.HapticFeedbackType {
-        switch type {
-            case .primary, .prominent:          .light(1)
-            case .primarySubtle, .secondary:    .light(0.5)
-            case .critical, .criticalSubtle:    .notification(.error)
+    private var cornerRadius: CGFloat {
+        appTheme.corners.medium
+    }
+    
+    private var font: Font {
+        switch buttonSize {
+        case .regular: appTheme.typography.subtitle
+        case .compact: appTheme.typography.body
         }
     }
+    
+//    private var hapticFeedback: HapticsProvider.HapticFeedbackType {
+//        switch type {
+//            case .primary, .prominent:          .light(1)
+//            case .primarySubtle, .secondary:    .light(0.5)
+//            case .critical, .criticalSubtle:    .notification(.error)
+//        }
+//    }
 }

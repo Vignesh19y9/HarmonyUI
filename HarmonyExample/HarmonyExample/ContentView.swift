@@ -34,6 +34,7 @@ struct ExampleColor: AppColors {
     var success: Color = .red
     var warning: Color = .red
     var error: Color = .red
+    var buttonColor: AppButtonColor = DefaultAppButtonColor()
 }
 
 #Preview {

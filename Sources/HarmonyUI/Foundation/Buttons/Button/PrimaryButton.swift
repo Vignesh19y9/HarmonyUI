@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  PrimaryButton.swift
 //  HarmonyUI
 //
 //  Created by Vignesh V on 28/03/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomButton<LeadingIcon: View,
+public struct PrimaryButton<LeadingIcon: View,
                     Label: View,
                     TrailingIcon: View>: View {
     
@@ -17,7 +17,6 @@ struct CustomButton<LeadingIcon: View,
     @ViewBuilder private let label: Label
     @ViewBuilder private let trailingIcon: TrailingIcon
     
-    private let type: ButtonType
     private let action: () -> Void
     
     var buttonColor: AppButtonColor {
@@ -25,20 +24,18 @@ struct CustomButton<LeadingIcon: View,
     }
     
     public init(
-        type: ButtonType = .primary,
         action: @escaping () -> Void,
         @ViewBuilder label: () -> Label,
         @ViewBuilder icon: () -> LeadingIcon = { EmptyView() },
         @ViewBuilder disclosureIcon: () -> TrailingIcon = { EmptyView() }
     ) {
-        self.type = type
         self.action = action
         self.label = label()
         self.leadingIcon = icon()
         self.trailingIcon = disclosureIcon()
     }
     
-    var body: some View {
+    public var body: some View {
         Button(action: { action() }, label: { label })
             .buttonStyle(
                 CustomButtonStyle(
@@ -55,16 +52,33 @@ struct CustomButton<LeadingIcon: View,
     }
 }
 
+
+extension PrimaryButton {
+    public init(
+        _ title: String,
+        action: @escaping () -> Void
+    ) where LeadingIcon == EmptyView, Label == Text, TrailingIcon == EmptyView {
+        self.action = action
+        self.label = Text(title)
+        self.leadingIcon = EmptyView()
+        self.trailingIcon = EmptyView()
+    }
+}
+
 #Preview {
-    CustomButton(action: {
+    VStack {
+        PrimaryButton(action: {
+            
+        }, label: {
+            Text("Hello, World!")
+        }, icon: {
+            Image(systemName: "square.and.arrow.up")
+        }, disclosureIcon: {
+            Image(systemName: "square.and.arrow.up")
+        })
         
-    }, label: {
-        Text("Hello, World!")
-    }, icon: {
-        Image(systemName: "square.and.arrow.up")
-    }, disclosureIcon: {
-        Image(systemName: "square.and.arrow.up")
-    })
+        PrimaryButton("Hello", action: {})
+    }
     .environmentObject(DefaultAppTheme())
-    .idealSize()
+    .padding()
 }
