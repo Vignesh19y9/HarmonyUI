@@ -13,7 +13,7 @@ public struct SettingsData {
     let buildNumber: String
     let isPremium: Bool
 
-    @MainActor static let `default` = SettingsData(
+    @MainActor static public let `default` = SettingsData(
         appName: "Harmony UI app",
         appVersion: "1.0.0",
         buildNumber: "100",

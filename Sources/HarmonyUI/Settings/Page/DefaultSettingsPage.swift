@@ -10,7 +10,7 @@ import SwiftUI
 public struct DefaultSettingsPage: View {
     let settingsData: SettingsData
     
-    init(settingsData: SettingsData = .default) {
+    public init(settingsData: SettingsData = .default) {
         self.settingsData = settingsData
     }
     

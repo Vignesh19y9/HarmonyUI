@@ -11,7 +11,7 @@ public struct DefaultOnboardingView: OnboardingShowProtocol {
     @Environment(\.showManager) public var showManager
     @State public var currentPage: Int = 0
     @State public var pageLoaded: Bool = true
-    @State public var shouldShow: Bool = true
+    @AppStorage("onboardCompleted") public var shouldShow = false
     
     public var id: UUID = UUID()
     public var onComplete: (() -> Void)?
