@@ -19,8 +19,8 @@ public struct PrimaryButton<LeadingIcon: View,
     
     private let action: () -> Void
     
-    var buttonColor: AppButtonColor {
-        appTheme.colors.buttonColor
+    var buttonColor: ProductColors {
+        appTheme.colors.product
     }
     
     public init(
@@ -46,9 +46,9 @@ public struct PrimaryButton<LeadingIcon: View,
                         trailingIcon
                     } )
             )
-            .backgroundStyles(buttonColor.primary.background,
-                              active: buttonColor.primary.backgroundPressed)
-            .textColor(buttonColor.primary.foreground)
+            .backgroundStyles(buttonColor.normal,
+                              active: buttonColor.active)
+//            .textColor(buttonColor.primary.foreground)
     }
 }
 

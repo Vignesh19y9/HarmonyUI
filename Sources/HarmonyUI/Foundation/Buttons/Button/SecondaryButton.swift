@@ -19,8 +19,8 @@ public struct SecondaryButton<LeadingIcon: View,
     
     private let action: () -> Void
     
-    var buttonColor: AppButtonColor {
-        appTheme.colors.buttonColor
+    var buttonColor: CloudColors {
+        appTheme.colors.cloud
     }
     
     public init(
@@ -46,9 +46,9 @@ public struct SecondaryButton<LeadingIcon: View,
                         trailingIcon
                     } )
             )
-            .backgroundStyles(buttonColor.secondary.background,
-                              active: buttonColor.secondary.backgroundPressed)
-            .textColor(buttonColor.secondary.foreground)
+            .backgroundStyles(buttonColor.normal,
+                              active: buttonColor.active)
+//            .textColor(buttonColor.secondary.foreground)
     }
 }
 

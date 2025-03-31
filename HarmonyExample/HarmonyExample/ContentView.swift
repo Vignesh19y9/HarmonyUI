@@ -18,8 +18,8 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             
             Text("Hello, world!")
-                .font(appTheme.typography.title)
-                .foregroundStyle(appTheme.colors.primary)
+                .font(appTheme.typography.title1.font)
+                .foregroundStyle(appTheme.colors.product.active)
             
             ThemeChangeView()
         }
@@ -28,16 +28,14 @@ struct ContentView: View {
 }
 
 struct ExampleColor: AppColors {
-    var primary: Color = .red
-    var secondary: Color = .red
-    var background: Color = .red
-    var foreground: Color = .red
-    var border: Color = .red
-    var success: Color = .red
-    var warning: Color = .red
-    var error: Color = .red
-    var buttonColor: AppButtonColor = DefaultAppButtonColor()
-    var white: WhiteColors = WhiteColors()
+    var ink: InkColors = .init()
+    var product: ProductColors = .init()
+    var cloud: CloudColors = .init()
+    var red: RedColors = .init()
+    var blue: BlueColors = .init()
+    var green: GreenColors = .init()
+    var orange: OrangeColors = .init()
+    var white: WhiteColors = .init()
 }
 
 #Preview {

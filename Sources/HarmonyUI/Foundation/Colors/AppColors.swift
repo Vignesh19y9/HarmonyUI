@@ -8,10 +8,15 @@
 import SwiftUI
 
 public protocol AppColors {
-    var buttonColor: AppButtonColor { get }
     var white: WhiteColors { get }
     var ink: InkColors { get }
     var product: ProductColors { get }
+    var cloud: CloudColors { get }
+    
+    var red: RedColors { get }
+    var blue: BlueColors { get }
+    var green: GreenColors { get }
+    var orange: OrangeColors { get }
 }
 
 public protocol Colors {
@@ -43,17 +48,33 @@ public protocol LighterColors: Colors {
 
 // MARK: - Default Implementation
 public struct DefaultColors: AppColors {
-    public let buttonColor: AppButtonColor = DefaultAppButtonColor()
+  
     public let white: WhiteColors
     public let ink: InkColors
     public let product: ProductColors
+    public let cloud: CloudColors
+    public let red: RedColors
+    public let blue: BlueColors
+    public let green: GreenColors
+    public let orange: OrangeColors
     
     public init(white: WhiteColors = WhiteColors(),
                 ink: InkColors = InkColors(),
-                product: ProductColors = ProductColors()) {
+                product: ProductColors = ProductColors(),
+                cloud: CloudColors = CloudColors(),
+                red: RedColors = RedColors(),
+                blue: BlueColors = BlueColors(),
+                green: GreenColors = GreenColors(),
+                orange: OrangeColors = OrangeColors()
+    ) {
         
         self.white = white
         self.ink = ink
         self.product = product
+        self.cloud = cloud
+        self.red = red
+        self.blue = blue
+        self.orange = orange
+        self.green = green
     }
 }

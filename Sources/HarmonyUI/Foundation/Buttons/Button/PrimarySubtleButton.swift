@@ -19,8 +19,8 @@ public struct PrimarySubtleButton<LeadingIcon: View,
     
     private let action: () -> Void
     
-    var buttonColor: AppButtonColor {
-        appTheme.colors.buttonColor
+    var buttonColor: ProductColors {
+        appTheme.colors.product
     }
     
     public init(
@@ -46,9 +46,9 @@ public struct PrimarySubtleButton<LeadingIcon: View,
                         trailingIcon
                     } )
             )
-            .backgroundStyles(buttonColor.primarySubtle.background,
-                              active: buttonColor.primarySubtle.backgroundPressed)
-            .textColor(buttonColor.primarySubtle.foreground)
+            .backgroundStyles(buttonColor.normal,
+                              active: buttonColor.active)
+//            .textColor(buttonColor.primarySubtle.foreground)
     }
 }
 
