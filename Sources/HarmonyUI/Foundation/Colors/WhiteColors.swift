@@ -28,6 +28,14 @@ public struct WhiteColors: NormalColors, DarkLightColors {
         self.lighter = lighter
         self.hover = hover
     }
+    
+    public init(bundle: Bundle = .harmony) {
+        self.normal = Color("White Normal", bundle: bundle)
+        self.active = Color("White Active", bundle: bundle)
+        self.darker = Color("White Darker", bundle: bundle)
+        self.lighter = Color("White Lighter", bundle: bundle)
+        self.hover = Color("White Hover", bundle: bundle)
+    }
 }
 
 /// Consider this as paper. 

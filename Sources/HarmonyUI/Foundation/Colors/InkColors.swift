@@ -41,5 +41,17 @@ public struct InkColors: NormalColors, DarkerColors, LighterColors {
         self.lightActive = lightActive
         self.lightHover = lightHover
     }
+    
+    public init(bundle: Bundle = .harmony) {
+        self.normal = Color("Ink Normal", bundle: bundle)
+        self.active = Color("Ink Normal Active", bundle: bundle)
+        self.hover = Color("Ink Normal Hover", bundle: bundle)
+        self.dark = Color("Ink Dark", bundle: bundle)
+        self.darkActive = Color("Ink Dark Active", bundle: bundle)
+        self.darkHover = Color("Ink Dark Hover", bundle: bundle)
+        self.light = Color("Ink Light", bundle: bundle)
+        self.lightActive = Color("Ink Light Active", bundle: bundle)
+        self.lightHover = Color("Ink Light Hover", bundle: bundle)
+    }
 }
 

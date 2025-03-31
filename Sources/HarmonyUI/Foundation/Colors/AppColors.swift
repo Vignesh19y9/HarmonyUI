@@ -8,41 +8,34 @@
 import SwiftUI
 
 public protocol AppColors {
-    var primary: Color { get }
-    var secondary: Color { get }
-    
-    var background: Color { get }
-    var foreground: Color { get }
-    
-    var border: Color { get }
-    
-    var success: Color { get }
-    var warning: Color { get }
-    var error: Color { get }
-    
     var buttonColor: AppButtonColor { get }
     var white: WhiteColors { get }
     var ink: InkColors { get }
+    var product: ProductColors { get }
 }
 
-public protocol NormalColors {
+public protocol Colors {
+    init(bundle: Bundle)
+}
+
+public protocol NormalColors: Colors {
     var normal: Color { get }
     var active: Color { get }
     var hover: Color { get }
 }
 
-public protocol DarkLightColors {
+public protocol DarkLightColors: Colors {
     var darker: Color { get }
     var lighter: Color { get }
 }
 
-public protocol DarkerColors {
+public protocol DarkerColors: Colors {
     var dark: Color { get }
     var darkActive: Color { get }
     var darkHover: Color { get }
 }
 
-public protocol LighterColors {
+public protocol LighterColors: Colors {
     var light: Color { get }
     var lightActive: Color { get }
     var lightHover: Color { get }
@@ -50,18 +43,17 @@ public protocol LighterColors {
 
 // MARK: - Default Implementation
 public struct DefaultColors: AppColors {
-    public let primary: Color = .blue
-    public let secondary: Color = .gray
-    public let background: Color = .white
-    public let foreground: Color = .black
-    public let border: Color = .gray
-    public let success: Color = .green
-    public let warning: Color = .yellow
-    public let error: Color = .red
     public let buttonColor: AppButtonColor = DefaultAppButtonColor()
+    public let white: WhiteColors
+    public let ink: InkColors
+    public let product: ProductColors
     
-    public let white: WhiteColors = WhiteColors()
-    public let ink: InkColors = InkColors()
-    
-    public init() {}
+    public init(white: WhiteColors = WhiteColors(),
+                ink: InkColors = InkColors(),
+                product: ProductColors = ProductColors()) {
+        
+        self.white = white
+        self.ink = ink
+        self.product = product
+    }
 }
