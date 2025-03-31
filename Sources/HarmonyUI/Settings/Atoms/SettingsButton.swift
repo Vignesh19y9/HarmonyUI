@@ -8,6 +8,7 @@
 import SwiftUI
 
 public struct SettingsButton: View {
+    @EnvironmentObject var appTheme: DefaultAppTheme
     let title: String
     let icon: String?
     let action: () -> Void
@@ -25,12 +26,13 @@ public struct SettingsButton: View {
                     Image(systemName: icon)
                         .frame(width: 24, height: 24)
                 }
-                Text(title)
-                    .foregroundColor(.primary)
+                
+                Texts(title, size: .large, weight: .semibold)
                 Spacer()
+                
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
             }
+            .foregroundStyle(appTheme.colors.ink.active)
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct DefaultPermissionsView: PermissionsShowProtocol {
     @Environment(\.showManager) public var showManager
-    @AppStorage("hasPermission") public var hasPermission = false
+    @AppStorage(UserKeys.permissionGranted.key) public var hasPermission = false
     
     public var id: UUID = UUID()
     public var shouldShow: Bool { !hasPermission }

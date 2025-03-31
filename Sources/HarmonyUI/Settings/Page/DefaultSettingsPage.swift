@@ -8,6 +8,7 @@
 import SwiftUI
 
 public struct DefaultSettingsPage: View {
+    @EnvironmentObject var appTheme: DefaultAppTheme
     let settingsData: SettingsData
     
     public init(settingsData: SettingsData = .default) {
@@ -17,17 +18,22 @@ public struct DefaultSettingsPage: View {
     public var body: some View {
         SettingsTemplate(sections: [
             AnyView(PremiumSection()),
+            AnyView(ThemeSection()),
             AnyView(FeedbackSection()),
             AnyView(LegalSection()),
             AnyView(MoreSection()),
-            AnyView(SocialSection()),
+            AnyView(DebugSection()),
             AnyView(AppInfoSection()),
-            AnyView(LoveSection())
+            AnyView(LoveSection()),
+            AnyView(SocialSection())
         ])
         .environment(\.settingsData, settingsData)
+//        .themeBackground()
+        .background{ Color.red }
     }
 }
 
 #Preview {
     DefaultSettingsPage()
+        .environmentObject(DefaultAppTheme())
 }

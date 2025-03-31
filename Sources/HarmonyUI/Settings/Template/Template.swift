@@ -8,16 +8,26 @@
 import SwiftUI
 
 public struct SettingsTemplate: View {
+    @EnvironmentObject var appTheme: DefaultAppTheme
     let sections: [AnyView]
 
     public var body: some View {
         NavigationView {
-            List {
-                ForEach(sections.indices, id: \.self) { index in
-                    sections[index]
+            ScrollView {
+                LazyVStack(alignment: .leading) {
+                    ForEach(sections.indices, id: \.self) { index in
+                        sections[index]
+                    }
+                    .padding(.vertical, appTheme.spacing.xsmall)
                 }
+                .padding(.horizontal, appTheme.spacing.large)
+                .navigationTitle("Settings")
+                
+#if DEBUG
+                
+#endif
             }
-            .navigationTitle("Settings")
+            .themeBackground()
         }
     }
 }
@@ -27,3 +37,14 @@ public struct SettingsTemplate: View {
     SettingsTemplate(sections: [])
 }
 
+extension List {
+    /// Hides the default background of `List` for all iOS versions
+    func hideBackground() -> some View {
+        if #available(iOS 16.0, *) {
+            return self.scrollContentBackground(.hidden)
+        } else {
+            UITableView.appearance().backgroundColor = .clear
+            return self
+        }
+    }
+}

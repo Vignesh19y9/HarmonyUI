@@ -25,23 +25,13 @@ public struct ShareButton: View {
     }
     
     public var body: some View {
-        if let url = url {
-            Button(action: { showShare.toggle() }) {
-                HStack {
-                    if let icon = icon {
-                        Image(systemName: icon)
-                            .frame(width: 24, height: 24)
-                    }
-                    Text(title)
-                        .foregroundColor(.primary)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.secondary)
-                }
+        SettingsButton(title: title, icon: icon, action: {
+            if let url {
+                showShare.toggle()
             }
-            .sheet(isPresented: $showShare) {
-                ActivityView(activityItems:[url])
-            }
+        })
+        .sheet(isPresented: $showShare) {
+            ActivityView(activityItems:[url])
         }
     }
 }

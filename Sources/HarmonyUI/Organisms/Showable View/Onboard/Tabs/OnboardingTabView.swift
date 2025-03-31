@@ -15,7 +15,7 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
     @Binding public var currentPage: Int
     @Binding public var pageLoaded: Bool
     @State private var isButtonsDisabled = false
-    @AppStorage("onboardCompleted") public var shouldShow = false
+    @AppStorage(UserKeys.hasOnboarded.key) public var shouldShow = false
     
     public let id = UUID()
     public let datas: [Data]

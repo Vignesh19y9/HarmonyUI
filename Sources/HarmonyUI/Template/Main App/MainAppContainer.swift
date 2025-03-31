@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 public struct MainAppContainer<S: ShowProtocol, C: View>: View {
-    @AppStorage("appearance") private var appearance: Appearance = .system
+    @AppStorage(UserKeys.appearance.key) private var appearance: Appearance = .system
     @StateObject private var showManager = ShowManager()
     
     public let splash: S

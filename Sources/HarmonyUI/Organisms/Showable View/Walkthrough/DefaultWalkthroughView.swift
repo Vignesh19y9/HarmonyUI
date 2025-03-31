@@ -8,7 +8,7 @@
 import SwiftUI
 public struct DefaultWalkthroughView: WalkthroughShowProtocol {
     @Environment(\.showManager) public var showManager
-    @AppStorage("walkthroughCompleted") public var walkthroughCompleted = false
+    @AppStorage(UserKeys.walkthroughDone.key) public var walkthroughCompleted = false
     
     public var id: UUID = UUID()
     public var shouldShow: Bool {
