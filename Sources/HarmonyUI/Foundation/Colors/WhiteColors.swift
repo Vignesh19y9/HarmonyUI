@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-public struct WhiteColors: NormalColors {
+public struct WhiteColors: NormalColors, DarkLightColors {
     public var normal: Color
     public var active: Color
+    public var hover: Color
+    
     public var darker: Color
     public var lighter: Color
-    public var hover: Color
     
     public init(
         normal: Color = Color("White Normal", bundle: .harmony),
@@ -28,3 +29,5 @@ public struct WhiteColors: NormalColors {
         self.hover = hover
     }
 }
+
+/// Consider this as paper. 

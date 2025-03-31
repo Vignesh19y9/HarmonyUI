@@ -22,14 +22,30 @@ public protocol AppColors {
     
     var buttonColor: AppButtonColor { get }
     var white: WhiteColors { get }
+    var ink: InkColors { get }
 }
 
 public protocol NormalColors {
     var normal: Color { get }
     var active: Color { get }
+    var hover: Color { get }
+}
+
+public protocol DarkLightColors {
     var darker: Color { get }
     var lighter: Color { get }
-    var hover: Color { get }
+}
+
+public protocol DarkerColors {
+    var dark: Color { get }
+    var darkActive: Color { get }
+    var darkHover: Color { get }
+}
+
+public protocol LighterColors {
+    var light: Color { get }
+    var lightActive: Color { get }
+    var lightHover: Color { get }
 }
 
 // MARK: - Default Implementation
@@ -45,6 +61,7 @@ public struct DefaultColors: AppColors {
     public let buttonColor: AppButtonColor = DefaultAppButtonColor()
     
     public let white: WhiteColors = WhiteColors()
+    public let ink: InkColors = InkColors()
     
     public init() {}
 }
