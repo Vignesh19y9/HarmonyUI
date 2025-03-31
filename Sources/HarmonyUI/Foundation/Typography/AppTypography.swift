@@ -8,23 +8,48 @@
 import SwiftUI
 
 public protocol AppTypography {
-    var title: Font { get }
-    var subtitle: Font { get }
-    var body: Font { get }
-    var caption: Font { get }
-    var button: Font { get }
-    var footnote: Font { get }
+    var title1: CFont { get }
+    var title2: CFont { get }
+    var title3: CFont { get }
+    var title4: CFont { get }
+    var title5: CFont { get }
+    var title6: CFont { get }
+    
+    var textSmall: CFont { get }
+    var textNorml: CFont { get }
+    var textLarge: CFont { get }
+    var textXLarg: CFont { get }
 }
 
+public struct CFont {
+    let name: String
+    let size: CGFloat
+    let lineHeight: CGFloat
+    
+    public init(name: String, size: CGFloat, lineHeight: CGFloat) {
+        self.name = name
+        self.size = size
+        self.lineHeight = lineHeight
+    }
+    
+    public var font: Font {
+        Font.custom(name, size: size)
+    }
+}
 
 //MARK: Default
 public struct DefaultTypography: AppTypography {
-    public let title: Font = .custom("Satoshi-Black", size: 24, relativeTo: .largeTitle)
-    public let subtitle: Font = .custom("Satoshi-Bold", size: 20, relativeTo: .title)
-    public let body: Font = .custom("Satoshi-Regular", size: 16, relativeTo: .body)
-    public let caption: Font = .custom("Satoshi-Regular", size: 14, relativeTo: .caption)
-    public let button: Font = .custom("Satoshi-Medium", size: 16, relativeTo: .headline)
-    public let footnote: Font = .custom("Satoshi-Regular", size: 12, relativeTo: .footnote)
+    public var title1: CFont = .init(name: "Satoshi-Regular", size: 28, lineHeight: 32)
+    public var title2: CFont = .init(name: "Satoshi-Regular", size: 22, lineHeight: 28)
+    public var title3: CFont = .init(name: "Satoshi-Regular", size: 18, lineHeight: 24)
+    public var title4: CFont = .init(name: "Satoshi-Regular", size: 16, lineHeight: 20)
+    public var title5: CFont = .init(name: "Satoshi-Regular", size: 15, lineHeight: 20)
+    public var title6: CFont = .init(name: "Satoshi-Regular", size: 13, lineHeight: 16)
+    
+    public var textSmall: CFont = .init(name: "Satoshi-Regular", size: 13, lineHeight: 16)
+    public var textNorml: CFont = .init(name: "Satoshi-Regular", size: 15, lineHeight: 20)
+    public var textLarge: CFont = .init(name: "Satoshi-Regular", size: 16, lineHeight: 24)
+    public var textXLarg: CFont = .init(name: "Satoshi-Regular", size: 18, lineHeight: 24)
     
     public init() {
         FontLoader.registerFonts()

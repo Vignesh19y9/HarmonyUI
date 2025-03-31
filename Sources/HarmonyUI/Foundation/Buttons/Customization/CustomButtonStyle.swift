@@ -58,8 +58,8 @@ public struct CustomButtonStyle<LeadingIcon: View, TrailingIcon: View>: Primitiv
     
     private var font: Font {
         switch buttonSize {
-        case .regular: appTheme.typography.subtitle
-        case .compact: appTheme.typography.body
+        case .regular: appTheme.typography.textNorml.font
+        case .compact: appTheme.typography.textSmall.font
         }
     }
     

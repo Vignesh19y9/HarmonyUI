@@ -33,7 +33,7 @@ public struct DefaultSplashView<Content: View>: SplashShowProtocol {
     
     public var body: some View {
         content()
-            .font(appTheme.typography.title)
+            .font(appTheme.typography.title1.font)
             .expand()
             .themeBackground()
             .onAppear {
