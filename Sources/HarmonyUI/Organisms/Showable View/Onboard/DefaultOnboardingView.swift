@@ -33,7 +33,7 @@ public struct DefaultOnboardingView: OnboardingShowProtocol {
                           onComplete: onCompleted) { data, index  in
             //TODO: with data, index pass coordinator to Survey Loaded View
             TabLoadedView(loaded: $pageLoaded, data: data)
-        }
+        }.themeBackground()
     }
     
     func onCompleted() {

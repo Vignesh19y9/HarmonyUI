@@ -20,6 +20,8 @@ struct ContentView: View {
             Text("Hello, world!")
                 .font(appTheme.typography.title)
                 .foregroundStyle(appTheme.colors.primary)
+            
+            ThemeChangeView()
         }
         .padding()
     }
@@ -35,6 +37,7 @@ struct ExampleColor: AppColors {
     var warning: Color = .red
     var error: Color = .red
     var buttonColor: AppButtonColor = DefaultAppButtonColor()
+    var white: WhiteColors = WhiteColors()
 }
 
 #Preview {

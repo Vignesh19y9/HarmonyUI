@@ -21,6 +21,15 @@ public protocol AppColors {
     var error: Color { get }
     
     var buttonColor: AppButtonColor { get }
+    var white: WhiteColors { get }
+}
+
+public protocol NormalColors {
+    var normal: Color { get }
+    var active: Color { get }
+    var darker: Color { get }
+    var lighter: Color { get }
+    var hover: Color { get }
 }
 
 // MARK: - Default Implementation
@@ -34,6 +43,8 @@ public struct DefaultColors: AppColors {
     public let warning: Color = .yellow
     public let error: Color = .red
     public let buttonColor: AppButtonColor = DefaultAppButtonColor()
+    
+    public let white: WhiteColors = WhiteColors()
     
     public init() {}
 }

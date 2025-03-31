@@ -8,8 +8,12 @@
 import SwiftUI
 public struct DefaultWalkthroughView: WalkthroughShowProtocol {
     @Environment(\.showManager) public var showManager
+    @AppStorage("walkthroughCompleted") public var walkthroughCompleted = false
+    
     public var id: UUID = UUID()
-    public var shouldShow: Bool = true
+    public var shouldShow: Bool {
+        !walkthroughCompleted
+    }
     public var onComplete: (() -> Void)?
     
     public init(onComplete: (() -> Void)? = nil) {
@@ -23,7 +27,10 @@ public struct DefaultWalkthroughView: WalkthroughShowProtocol {
                 .padding()
             Button("Get Started") {
                 performOnComplete()
+                walkthroughCompleted = true
             }
         }
+        .expand()
+        .themeBackground()
     }
 }

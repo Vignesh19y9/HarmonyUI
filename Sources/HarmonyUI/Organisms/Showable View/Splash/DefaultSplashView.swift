@@ -34,6 +34,8 @@ public struct DefaultSplashView<Content: View>: SplashShowProtocol {
     public var body: some View {
         content()
             .font(appTheme.typography.title)
+            .expand()
+            .themeBackground()
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     performOnComplete()

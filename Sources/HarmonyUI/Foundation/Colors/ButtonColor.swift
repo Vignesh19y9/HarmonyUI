@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 public protocol AppButtonColor {
     var primary: ButtonColor { get }
     var primarySubtle: ButtonColor { get }

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 public struct MainAppContainer<S: ShowProtocol, C: View>: View {
+    @AppStorage("appearance") private var appearance: Appearance = .system
     @ObservedObject var appTheme: DefaultAppTheme
     @StateObject private var showManager = ShowManager()
     
@@ -55,6 +56,7 @@ public struct MainAppContainer<S: ShowProtocol, C: View>: View {
             moveToNext()
         }
         .environmentObject(appTheme)
+        .preferredColorScheme(appearance.colorScheme)
     }
     
     private func moveToNext() {
