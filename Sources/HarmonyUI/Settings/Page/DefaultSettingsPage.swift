@@ -25,10 +25,8 @@ public struct DefaultSettingsPage: View {
             AnyView(DebugSection()),
             AnyView(AppInfoSection()),
             AnyView(LoveSection()),
-            AnyView(SocialSection())
         ])
         .environment(\.settingsData, settingsData)
-//        .themeBackground()
         .background{ Color.red }
     }
 }

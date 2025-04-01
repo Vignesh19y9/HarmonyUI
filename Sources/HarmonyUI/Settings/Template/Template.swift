@@ -13,19 +13,15 @@ public struct SettingsTemplate: View {
 
     public var body: some View {
         NavigationView {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 LazyVStack(alignment: .leading) {
                     ForEach(sections.indices, id: \.self) { index in
                         sections[index]
                     }
                     .padding(.vertical, appTheme.spacing.xsmall)
                 }
-                .padding(.horizontal, appTheme.spacing.large)
+                .padding(.horizontal, appTheme.spacing.medium)
                 .navigationTitle("Settings")
-                
-#if DEBUG
-                
-#endif
             }
             .themeBackground()
         }

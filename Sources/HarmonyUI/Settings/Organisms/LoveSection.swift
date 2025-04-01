@@ -15,10 +15,14 @@ public struct LoveSection: View {
     }
     
     public var body: some View {
-        Text(string)
-            .font(.caption)
-            .foregroundColor(.secondary)
-            .frame(maxWidth: .infinity)
+        VStack {
+            Text(string)
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity)
+            
+            AnyView(SocialSection())
+        }
     }
 }
 

@@ -25,9 +25,10 @@ public struct DefaultWalkthroughView: WalkthroughShowProtocol {
             Text("Feature Walkthrough")
                 .font(.title)
                 .padding()
+            
             Button("Get Started") {
-                performOnComplete()
                 walkthroughCompleted = true
+                performOnComplete()
             }
         }
         .expand()

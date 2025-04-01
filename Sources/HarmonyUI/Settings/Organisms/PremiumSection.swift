@@ -34,7 +34,9 @@ public struct DefaultPremiumSettingsCard: View {
     }
     
     public var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading,
+               spacing: appTheme.spacing.small) {
+            
             HStack {
                 Image(systemName: "crown.fill")
                     .resizable()
@@ -46,9 +48,18 @@ public struct DefaultPremiumSettingsCard: View {
                 Spacer()
             }
             
-            Heading(subTitle, style: .title3)
+            HStack {
+                Heading(subTitle, style: .title3)
+                
+                Spacer()
+                
+                Button("Go Pro Todo") {
+                    
+                }
+                .buttonStyle(.borderedProminent)
+            }
         }
-        .padding(appTheme.spacing.small)
+        .padding(appTheme.spacing.medium)
         .background {
             LinearGradient(
                 colors: [

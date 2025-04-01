@@ -15,9 +15,6 @@ struct HarmonyExampleApp: App {
     var body: some Scene {
         WindowGroup {
             VStack {
-                PrimaryButton("Change theme") {
-                    appTheme.colors = ExampleColor()
-                }
                 
                 MainAppContainer(content: ContentView())
                     .environment(\.appTheme, appTheme)

@@ -15,7 +15,9 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
     @Binding public var currentPage: Int
     @Binding public var pageLoaded: Bool
     @State private var isButtonsDisabled = false
-    @AppStorage(UserKeys.hasOnboarded.key) public var shouldShow = false
+    @State public var hasOnboarded = false
+    
+    public var shouldShow: Bool { !hasOnboarded }
     
     public let id = UUID()
     public let datas: [Data]
@@ -133,7 +135,6 @@ public struct OnboardingTabView<Data: OnboardingData, Content: TabLoadableView>:
     }
     
     private func completeOnboarding() {
-        shouldShow = false
         onComplete?()
     }
 }

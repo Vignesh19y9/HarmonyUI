@@ -10,20 +10,29 @@ import HarmonyUI
 
 struct ContentView: View {
     @EnvironmentObject var appTheme: DefaultAppTheme
+    @State var showSettings: Bool = false
     
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            
-            Text("Hello, world!")
+            Text("This is the main page")
                 .font(appTheme.typography.title1.font)
                 .foregroundStyle(appTheme.colors.product.active)
             
-            ThemeChangeView()
+            ThemeChangeButton()
+                .elevation(appTheme.elevation.level2)
+            
+            PrimaryButton("Change App theme") {
+                appTheme.colors = ExampleColor()
+            }
+            
+            PrimaryButton("Show Settings") {
+                showSettings.toggle()
+            }
         }
         .padding()
+        .popover(isPresented: $showSettings) {
+            DefaultSettingsPage()
+        }
     }
 }
 

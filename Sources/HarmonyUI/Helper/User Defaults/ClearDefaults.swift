@@ -12,5 +12,7 @@ extension UserDefaults {
         UserKeys.allKeys.forEach{
             removeObject(forKey: $0)
         }
+        
+        synchronize()
     }
 }

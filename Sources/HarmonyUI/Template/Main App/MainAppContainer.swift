@@ -18,9 +18,7 @@ public struct MainAppContainer<S: ShowProtocol, C: View>: View {
     
     @State private var currentIndex: Int = 0
     
-    private var filteredOthers: [ShowContainer] {
-        others.filter { $0.shouldShow }
-    }
+    private var filteredOthers: [ShowContainer]
     
     private var currentScreen: AnyView {
         if currentIndex == 0 {
@@ -42,6 +40,8 @@ public struct MainAppContainer<S: ShowProtocol, C: View>: View {
         self.splash = splash
         self.others = others
         self.content = content
+        
+        self.filteredOthers = others.filter { $0.shouldShow }
     }
     
     public var body: some View {

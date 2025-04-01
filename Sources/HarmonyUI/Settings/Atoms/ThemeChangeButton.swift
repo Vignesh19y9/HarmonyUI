@@ -47,11 +47,9 @@ public struct ThemeChangeButton: View {
         SettingsButton(
             title: appearance.rawValue,
             icon: (appearance == .dark) ? "moon.fill" : "sun.max.fill",
+            showDisclosure: false,
             action: {
-                withAnimation {
-                    appearance = appearance.next()
-                }
+                appearance = appearance.next()
             })
-        .preferredColorScheme(appearance.colorScheme)
     }
 }

@@ -21,7 +21,11 @@ public struct ClearDefaultsButton: View {
     }
 
     public var body: some View {
-        SettingsButton(title: title, icon: icon) {
+        SettingsButton(
+            title: title,
+            icon: icon,
+            showDisclosure: false
+        ) {
             UserDefaults.standard.resetUser()
         }
     }

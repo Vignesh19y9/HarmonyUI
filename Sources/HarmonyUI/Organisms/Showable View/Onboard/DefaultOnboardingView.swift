@@ -11,7 +11,9 @@ public struct DefaultOnboardingView: OnboardingShowProtocol {
     @Environment(\.showManager) public var showManager
     @State public var currentPage: Int = 0
     @State public var pageLoaded: Bool = true
-    @AppStorage(UserKeys.hasOnboarded.key) public var shouldShow = false
+    @AppStorage(UserKeys.hasOnboarded.key) public var hasOnboarded = false
+    
+    public var shouldShow: Bool { !hasOnboarded }
     
     public var id: UUID = UUID()
     public var onComplete: (() -> Void)?
@@ -37,7 +39,7 @@ public struct DefaultOnboardingView: OnboardingShowProtocol {
     }
     
     func onCompleted() {
-        shouldShow = false
+        hasOnboarded = true
         performOnComplete()
     }
 }

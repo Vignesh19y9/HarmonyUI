@@ -24,12 +24,14 @@ public struct SettingsSection: View {
 
     public var body: some View {
         if !items.isEmpty {
-            VStack (alignment: .leading) {
+            VStack(alignment: .leading,
+                   spacing: appTheme.spacing.xsmall) {
                 if shouldStyle {
                     Heading(title, style: .title5)
                 }
                 
-                VStack {
+                VStack(alignment: .leading,
+                       spacing: appTheme.spacing.small) {
                     ForEach(items.indices, id: \.self) { index in
                         items[index]
                         

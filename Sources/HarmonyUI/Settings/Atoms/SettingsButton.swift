@@ -11,11 +11,16 @@ public struct SettingsButton: View {
     @EnvironmentObject var appTheme: DefaultAppTheme
     let title: String
     let icon: String?
+    let showDisclosure: Bool
     let action: () -> Void
     
-    public init(title: String, icon: String?, action: @escaping () -> Void) {
+    public init(title: String,
+                icon: String?,
+                showDisclosure: Bool = true,
+                action: @escaping () -> Void) {
         self.title = title
         self.icon = icon
+        self.showDisclosure = showDisclosure
         self.action = action
     }
 
@@ -30,7 +35,9 @@ public struct SettingsButton: View {
                 Texts(title, size: .large, weight: .semibold)
                 Spacer()
                 
-                Image(systemName: "chevron.right")
+                if showDisclosure {
+                    Image(systemName: "chevron.right")
+                }
             }
             .foregroundStyle(appTheme.colors.ink.active)
         }

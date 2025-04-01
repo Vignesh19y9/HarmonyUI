@@ -25,8 +25,8 @@ public struct DefaultPermissionsView: PermissionsShowProtocol {
                 .font(.title)
                 .padding()
             Button("Allow") {
-                performOnComplete()
                 hasPermission = true
+                performOnComplete()
             }
         }
         .expand()
