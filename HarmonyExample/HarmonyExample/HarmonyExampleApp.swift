@@ -12,6 +12,10 @@ import HarmonyUI
 struct HarmonyExampleApp: App {
     @ObservedObject var appTheme = DefaultAppTheme()
     
+    init() {
+        HarmonyUI.start()
+    }
+    
     var body: some Scene {
         WindowGroup {
             VStack {

@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 public enum Appearance: String, CaseIterable, Identifiable {
+    nonisolated(unsafe) static public var defaultScheme: ColorScheme = .light
+    
     case system = "System"
     case light = "Light"
     case dark = "Dark"
@@ -22,7 +24,7 @@ public enum Appearance: String, CaseIterable, Identifiable {
         case .dark:
             return .dark
         case .system:
-            return nil
+            return Self.defaultScheme
         }
     }
     

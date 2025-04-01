@@ -9,6 +9,7 @@ import SwiftUI
 import HarmonyUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var appTheme: DefaultAppTheme
     @State var showSettings: Bool = false
     
@@ -32,6 +33,7 @@ struct ContentView: View {
         .padding()
         .popover(isPresented: $showSettings) {
             DefaultSettingsPage()
+                .preferredColorScheme(colorScheme)
         }
     }
 }
