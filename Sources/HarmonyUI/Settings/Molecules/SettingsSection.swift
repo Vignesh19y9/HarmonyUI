@@ -27,7 +27,7 @@ public struct SettingsSection: View {
             VStack(alignment: .leading,
                    spacing: appTheme.spacing.xsmall) {
                 if shouldStyle {
-                    Heading(title, style: .title5)
+                    HeadingView(title, style: .title5)
                 }
                 
                 VStack(alignment: .leading,

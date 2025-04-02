@@ -43,13 +43,13 @@ public struct DefaultPremiumSettingsCard: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40, height: 40)
                 
-                Heading(title, style: .title2)
+                HeadingView(title, style: .title2)
                 
                 Spacer()
             }
             
             HStack {
-                Heading(subTitle, style: .title3)
+                HeadingView(subTitle, style: .title3)
                 
                 Spacer()
                 

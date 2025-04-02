@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct Heading: View {
+public struct HeadingView: View {
     @EnvironmentObject var appTheme: DefaultAppTheme
     let style: Style
     let string: String
@@ -66,12 +66,12 @@ public struct Heading: View {
 
 #Preview {
     VStack(alignment: .leading) {
-        Heading("Heading is a test to see the working", style: .title1)
-        Heading("Heading is a test to see the working", style: .title2)
-        Heading("Heading is a test to see the working", style: .title3)
-        Heading("Heading is a test to see the working", style: .title4)
-        Heading("Heading is a test to see the working", style: .title5)
-        Heading("Heading is a test to see the working", style: .title6)
+        HeadingView("Heading is a test to see the working", style: .title1)
+        HeadingView("Heading is a test to see the working", style: .title2)
+        HeadingView("Heading is a test to see the working", style: .title3)
+        HeadingView("Heading is a test to see the working", style: .title4)
+        HeadingView("Heading is a test to see the working", style: .title5)
+        HeadingView("Heading is a test to see the working", style: .title6)
     }
     .environmentObject(DefaultAppTheme())
 }
