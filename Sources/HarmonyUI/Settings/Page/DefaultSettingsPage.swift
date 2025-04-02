@@ -8,6 +8,7 @@
 import SwiftUI
 
 public struct DefaultSettingsPage: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var appTheme: DefaultAppTheme
     let settingsData: SettingsData
     
@@ -16,18 +17,24 @@ public struct DefaultSettingsPage: View {
     }
     
     public var body: some View {
-        SettingsTemplate(sections: [
-            AnyView(PremiumSection()),
-            AnyView(ThemeSection()),
-            AnyView(FeedbackSection()),
-            AnyView(LegalSection()),
-            AnyView(MoreSection()),
-            AnyView(DebugSection()),
-            AnyView(AppInfoSection()),
-            AnyView(LoveSection()),
-        ])
-        .environment(\.settingsData, settingsData)
-        .background{ Color.red }
+        NavigationView {
+            SettingsTemplate(sections: [
+//                AnyView(PremiumSection()),
+                AnyView(ThemeSection()),
+                AnyView(FeedbackSection()),
+                AnyView(LegalSection()),
+                AnyView(MoreSection()),
+                AnyView(DebugSection()),
+                AnyView(AppInfoSection()),
+                AnyView(LoveSection()),
+            ])
+            .environment(\.settingsData, settingsData)
+            .themeBackground()
+            .navigationTitle("Settings")
+            .toolbar {
+                CloseButton(action: { dismiss() })
+            }
+        }
     }
 }
 

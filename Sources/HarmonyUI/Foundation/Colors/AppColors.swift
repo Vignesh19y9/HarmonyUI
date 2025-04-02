@@ -78,3 +78,26 @@ public struct DefaultColors: AppColors {
         self.green = green
     }
 }
+
+
+/*
+ Product - Normal primary actions (Button, text links)
+         - Dont use for background use light colors if needed
+ 
+ White - Backgrounds
+
+ Cloud - Page, Card, Sections background
+ Cloud Dark - Borders, Check Box, Radio, switch
+ 
+ Ink - Text, Icons
+ 
+ Green - sucess
+ 
+ Orange - warning
+ 
+ Red - destructive
+ 
+ Blue - Focus, active
+ 
+ 
+ */

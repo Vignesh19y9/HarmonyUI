@@ -53,5 +53,6 @@ public struct ThemeChangeButton: View {
             action: {
                 appearance = appearance.next()
             })
+        .preferredColorScheme(appearance.colorScheme)
     }
 }

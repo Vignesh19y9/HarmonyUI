@@ -10,20 +10,17 @@ import SwiftUI
 public struct SettingsTemplate: View {
     @EnvironmentObject var appTheme: DefaultAppTheme
     let sections: [AnyView]
-
+    
     public var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                LazyVStack(alignment: .leading) {
-                    ForEach(sections.indices, id: \.self) { index in
-                        sections[index]
-                    }
-                    .padding(.vertical, appTheme.spacing.xsmall)
+        
+        ScrollView(showsIndicators: false) {
+            LazyVStack(alignment: .leading) {
+                ForEach(sections.indices, id: \.self) { index in
+                    sections[index]
                 }
-                .padding(.horizontal, appTheme.spacing.medium)
-                .navigationTitle("Settings")
+                .padding(.vertical, appTheme.spacing.xsmall)
             }
-            .themeBackground()
+            .padding(.horizontal, appTheme.spacing.medium)
         }
     }
 }

@@ -44,7 +44,6 @@ public struct SettingsSection: View {
                 .background {
                     if shouldStyle {
                         appTheme.colors.white.darker
-                            
                     }
                 }
                 .cornerRadius(appTheme.corners.small)
