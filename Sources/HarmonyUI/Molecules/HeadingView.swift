@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct HeadingView: View {
+public struct HeadingView: View { 
     @EnvironmentObject var appTheme: DefaultAppTheme
     let style: Style
     let string: String
